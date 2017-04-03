@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>HomePage</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
 <p><a href="memberList.php">Member List</a>

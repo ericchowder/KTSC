@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Reservation</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
 <h1 class="carTitle">TEMP_CAR_TYPE</h1>
