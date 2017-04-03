@@ -2,28 +2,15 @@
 <html>
 <head>
     <title>Welcome KTCS</title>
-
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<style>
-    #loginDiv {
-        width: 40em;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #regDiv {
-        position: absolute;
-        right: 0;
-        top: 0;
-
-        padding: 5px;
-    }
-</style>
-<!-- dynamic content will be here -->
-<div id="loginDiv" align='center'>
+<div class="corner">
+    <a href="registration.php">Register</a>
+</div>
+<div class="center">
     <form name='login' id='login' action='index.php' method='post'>
-        <table border='0'>
+        <table>
             <tr>
                 <td>Username</td>
                 <td><input type='text' name='username' id='username'/></td>
@@ -41,9 +28,5 @@
         </table>
     </form>
 </div>
-<div id="regDiv">
-    <a href="registration.php">Register</a>
-</div>
-
 </body>
 </html>
