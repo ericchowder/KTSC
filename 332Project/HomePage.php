@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Registration Page</title>
+    <title>HomePage Page</title>
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
@@ -19,3 +19,4 @@
     <button>Search</button>
 </p>
 </body>
+</html>
