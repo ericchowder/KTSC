@@ -5,6 +5,55 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
+ <?php
+  //Create a user session or resume an existing one
+ session_start();
+ ?>
+ 
+<?php
+//check if the login form has been submitted
+if(isset($_POST['regBtn'])){
+ 
+    // include database connection
+    include_once 'config/connection.php'; 
+	
+	if(!$con)
+	{
+		die("Could not connect:".mysql_error());
+	}
+	
+	$aptNum = $_POST['aptNum'];
+	$city = $_POST['city'];
+	$driving = $_POST['driving'];
+	$email = $_POST['email'];
+	$first = $_POST['first'];
+	$second = $_POST['second'];
+	$phone = $_POST['phone'];
+	$state = $_POST['state'];
+	$streetName = $_POST['streetName'];
+	$streetNum = $_POST['streetNum'];
+	$zip = $_POST['zip'];
+		
+	$sql = "INSERT INTO ktcs_members".
+	"(apt_number,city,driving_licence_no,email,
+	first_name,last_name,phone_number,state,street_name,street_no,zip_code)".
+	"VALUES ('$aptNum','$city','$driving','$email','$first','$second','$phone','$state','$streetName','$streetNum','$zip')";
+	
+	mysql_select_db('project');
+	$retval=mysql_query($sql,$con);
+	
+	if(!$retval){
+		die('Could not enter data:' .mysql_error());
+	}
+	
+	echo "Entered data successfully";
+	
+	mysql_query($sql);
+	
+	mysqli_close($con);
+ }
+?>
+
 <div class="corner">
     <a href="index.php">Log-in</a>
 </div>
