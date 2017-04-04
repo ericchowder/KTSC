@@ -38,17 +38,17 @@ if(isset($_POST['regBtn'])){
 	"(member_no,first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee)".
 	"VALUES ('$member_no','$first','$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email,'$driving','$membership')";
 
-	
+
 	if(!$con){
 		die('Could not enter data:' .mysqli_error());
 	}
-	
+
 	mysqli_select_db($con,"project") or die (mysqli_error());
-	
+
 	$retval=mysqli_query($con,$sql);
-	
+
 	echo($retval);
-	
+
 	if(!$retval){
 		die('Could not enter data. '. mysql_error());
 	}
@@ -61,66 +61,61 @@ if(isset($_POST['regBtn'])){
 </div>
 
 <div class="center">
-    <form name='registration' id='registration' action='registration.php' autocomplete="on" method='post'>
+    <form name='registration' id='registration' action='registration.php' method='post'>
         <table border='0'>
             <tr>
-                <td>Password</td>
-                <td><input type='password' name='password' id='password' required//></td>
-            </tr>
-
-            <tr>
                 <td>First name</td>
-                <td><input type='text' name='first' id='first'required//></td>
+                <td><input type='text' name='first' id='first' required//></td>
             </tr>
 
             <tr>
                 <td>Last name</td>
-                <td><input type='text' name='second' id='second'required//></td>
+                <td><input type='text' name='second' id='second' required//></td>
             </tr>
 
             <tr>
                 <td>Email</td>
-                <td><input type='text' name='email' id='email'required//></td>
+                <td><input type='text' name='email' id='email' required//></td>
             </tr>
 
             <tr>
                 <td>Driver's license Number</td>
-                <td><input type='text' name='driving' id='driving'required//></td>
+                <td><input type='text' name='driving' id='driving' required//></td>
             </tr>
 
             <tr>
                 <td>Phone number</td>
-                <td><input type='text' name='phone' id='phone'required//></td>
+                <td><input type='text' name='phone' id='phone' required//></td>
             </tr>
 
             <tr>
                 <td>Street Number</td>
-                <td><input type='text' name='streetNum' id='streetNum'required//></td>
+                <td><input type='text' name='streetNum' id='streetNum' required//></td>
             </tr>
 
             <tr>
                 <td>Street Name</td>
-                <td><input type='text' name='streetName' id='streetName'required//></td>
+                <td><input type='text' name='streetName' id='streetName' required//></td>
             </tr>
 
             <tr>
                 <td>Apt Number</td>
-                <td><input type='text' name='aptNum' id='aptNum'required//></td>
+                <td><input type='text' name='aptNum' id='aptNum' required//></td>
             </tr>
 
             <tr>
                 <td>City</td>
-                <td><input type='text' name='city' id='city'required//></td>
+                <td><input type='text' name='city' id='city' required//></td>
             </tr>
 
             <tr>
                 <td>State</td>
-                <td><input type='text' name='state' id='state'required//></td>
+                <td><input type='text' name='state' id='state' required//></td>
             </tr>
 
             <tr>
                 <td>ZIP</td>
-                <td><input type='text' name='zip' id='zip'required//></td>
+                <td><input type='text' name='zip' id='zip' required//></td>
             </tr>
 
             <tr>
