@@ -4,7 +4,7 @@ OUR FILE-->
 <html>
     <head>
         <title>Welcome KTCS</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
+  
     </head>
 <body>
 
@@ -32,13 +32,16 @@ if(isset($_POST['loginBtn'])){
     include_once 'config/connection.php'; 
 	
 	// SELECT query
-        $query = "SELECT id,username, password, email FROM user WHERE username=? AND password=?";
+        $query = "SELECT member_no,driving_licence_no FROM ktcs_members";
  
+		//WHERE member_no=12328893,driving_licence_no=46897"
+		//FIX WHAT IS PASSWORD AND WHAT IS LOGIN DETAIL
+		
         // prepare query for execution
         if($stmt = $con->prepare($query)){
 		
         // bind the parameters. This is the best way to prevent SQL injection hacks. ss means the two parameters are strings.
-        $stmt->bind_Param("ss", $_POST['username'], $_POST['password']);
+        $stmt->bind_Param("ss", $_POST['member_no'], $_POST['driving_licence_no']);
          
         // Execute the query
 		$stmt->execute();
@@ -54,14 +57,14 @@ if(isset($_POST['loginBtn'])){
 			//Read the user details
 			$myrow = $result->fetch_assoc();
 			//Create a session variable that holds the user's id
-			$_SESSION['id'] = $myrow['id'];
+			$_SESSION['id'] = $myrow['member_no'];
 			//Redirect the browser to the profile editing page and kill this page.
 			header("Location: HomePage.php");
 			die();
 		} else {
 			//If the username/password doesn't matche a user in our database
 			// Display an error message and the login form
-			echo "Failed to login";
+			echo "Failed to login.";
 		}
 		} else {
 			echo "failed to prepare the SQL";
