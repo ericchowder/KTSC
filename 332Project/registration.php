@@ -21,8 +21,7 @@ if(isset($_POST['regBtn'])){
 	{
 		die("Could not connect:".mysqli_error());
 	}
-	
-	
+	$member_no = $_POST['password'];
 	$aptNum = $_POST['aptNum'];
 	$city = $_POST['city'];
 	$driving = $_POST['driving'];
@@ -34,20 +33,25 @@ if(isset($_POST['regBtn'])){
 	$streetName = $_POST['streetName'];
 	$streetNum = $_POST['streetNum'];
 	$zip = $_POST['zip'];
-		
+	$membership = 9.9;
 	$sql = "INSERT INTO ktcs_members".
-	"(apt_number,city,driving_licence_no,email,
-	first_name,last_name,phone_number,state,street_name,street_no,zip_code)".
-	"VALUES ('$aptNum','$city','$driving','$email','$first','$second','$phone','$state','$streetName','$streetNum','$zip')";
-	
+	"(member_no,first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee)".
+	"VALUES ('$member_no','$first','$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email,'$driving','$membership')";
 
+	
 	if(!$con){
 		die('Could not enter data:' .mysqli_error());
 	}
 	
 	mysqli_select_db($con,"project") or die (mysqli_error());
-
 	
+	$retval=mysqli_query($con,$sql);
+	
+	echo($retval);
+	
+	if(!$retval){
+		die('Could not enter data. '. mysql_error());
+	}
 	($con->close());
  }
 ?>
@@ -57,13 +61,8 @@ if(isset($_POST['regBtn'])){
 </div>
 
 <div class="center">
-    <form name='registration' id='registration' action='registration.php' method='post'>
+    <form name='registration' id='registration' action='registration.php' autocomplete="on" method='post'>
         <table border='0'>
-            <tr>
-                <td>Username</td>
-                <td><input type='text' name='username' id='username' required//></td>
-            </tr>
-
             <tr>
                 <td>Password</td>
                 <td><input type='password' name='password' id='password' required//></td>
@@ -122,16 +121,6 @@ if(isset($_POST['regBtn'])){
             <tr>
                 <td>ZIP</td>
                 <td><input type='text' name='zip' id='zip'required//></td>
-            </tr>
-
-            <tr>
-                <td>Phone Number</td>
-                <td><input type='text' name='phone' id='phone'required//></td>
-            </tr>
-
-            <tr>
-                <td>Email</td>
-                <td><input type='text' name='email' id='email'required//></td>
             </tr>
 
             <tr>
