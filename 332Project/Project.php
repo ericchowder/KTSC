@@ -3,11 +3,13 @@
 <body>
 
 <?php
- 
+ // Create a database user using these credentials:
  $host = "localhost";
  $user = "project332";
  $password = "project332password";
  $database = "project";
+ // in phpadmin create a database called "project"
+// run this page, and it will create all tables amd populate it.
 
  $cxn = mysqli_connect($host,$user,$password, $database);
  // Check connection
