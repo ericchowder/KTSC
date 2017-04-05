@@ -9,6 +9,7 @@
  <?php
   //Create a user session or resume an existing one
  session_start();
+ $_SESSION['id']=$_POST['username'];
  ?>
  
   <?php
@@ -23,14 +24,18 @@
 
 <h1>KTSC</h1>
 <div class="corner">
-    <a href="../index.php">Logout</a>
+<form action="../index.php"  method="GET">
+    <input value='Logout' type='submit' id='logoutbutton' name='logoutbutton'</a>
+</form>
 </div>
+
 <p>
     <a href="parkingLocations.php">Parking Locations</a>
 </p>
 <p>
     <a href="rentalHistory.php">My rental History</a>
 </p>
+
 <form action="AvailCars.php">
 <p>Available cars on <input type="date" name="date" onclick="AvailCars.php">
     <input type="submit" value="SUBMIT" method="GET">
