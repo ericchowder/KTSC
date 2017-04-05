@@ -13,7 +13,7 @@ include_once "../config/connection.php"; //$con variable
 $query = "SELECT  FROM member_rental_history NATURAL JOIN cars";
 $result = mysqli_query($con, $query);
 ?>
-<h1>My Rental History</h1>
+<h1>My Rental History.</h1>
 
 <!--Table Headers-->
 <table border="1">
@@ -38,8 +38,12 @@ $result = mysqli_query($con, $query);
         echo "</tr>\n";
     }
     ?>
+	
 </table>
 
+<?php
 
+print_r ($_POST);
+?>
 </body>
 </html>

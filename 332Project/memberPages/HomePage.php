@@ -14,20 +14,11 @@
   <?php
 
  //check if the user clicked the logout link and set the logout GET parameter
-if(isset($_GET['logout'])){
+	if(isset($_POST['loginBtn'])){
 	//Destroy the user's session.
-	$_SESSION['id']=null;
-	header("Location: index.php");
-	session_destroy();
+	//$_SESSION['id']=null;
+	//header("Location: index.php");
 }
- ?>
- 
- <?php 
- if(isset($_GET['Search'])){
-	
-	header("Locations: AvailCars.php");
-	 
- }
  ?>
 
 <h1>KTSC</h1>

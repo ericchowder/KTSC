@@ -21,8 +21,7 @@ if(isset($_POST['regBtn'])){
 	{
 		die("Could not connect:".mysqli_error());
 	}
-	
-	
+		
 	$first = $_POST['first'];
 	$second = $_POST['second'];
 	$streetNum = $_POST['streetNum'];

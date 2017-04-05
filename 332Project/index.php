@@ -69,13 +69,17 @@ if (isset($_POST['loginBtn'])) {
 }
 
 ?>
+<?php
+	print_r ($_GET);
+	print_r ($_POST);
+?>
 
 <!-- dynamic content will be here -->
 <div class="corner">
     <a href="registration.php">Register</a>
 </div>
 <div class="center">
-    <form name='login' id='login' action='index.php' method='post'>
+    <form name='login' id='login' action="memberPages/HomePage.php" method='POST'>
         <table>
             <tr>
                 <td>Driver's Licence:</td>

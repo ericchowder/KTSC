@@ -58,7 +58,7 @@ echo "cars created.<br />";
 
 mysqli_query($cxn,"create table car_rental_history
 	(
-	rental_id								varchar(20) NOT NULL AUTO_INCREMENT,
+	rental_id								integer(20) NOT NULL AUTO_INCREMENT,
 	vehicle_identification_number			int(5),
 	member_no		    					varchar(20), 
 	pick_up_odometer    					integer(3),
@@ -152,8 +152,8 @@ mysqli_query($cxn, "insert into cars values
 echo "cars loaded. <br />";
 
 mysqli_query($cxn, "insert into car_rental_history values
-	('20038904', '33112' ,'122','144','Working'),
-	('12305931', '89312','100','112','Damaged');");
+	('20038904', '12345', '33112' ,'122','144','Working'),
+	('12305931', '23456', '89312','100','112','Damaged');");
 
 echo "car_rental_history loaded. <br />";
 
@@ -170,8 +170,8 @@ mysqli_query($cxn, "insert into KTCS_members values
 echo "KTCS_members loaded. <br />";
 
 mysqli_query($cxn, "insert into member_rental_history values
-	('10032911', '11233' ,'113', '222','Damaged'),
-	('12328891',     '33413' ,'114', '333','Damaged');");
+	('10032911', '12345' ,'113', '222','Damaged'),
+	('12328891', '23456' ,'114', '333','Damaged');");
 
 echo "member_rental_history loaded. <br />";
 
