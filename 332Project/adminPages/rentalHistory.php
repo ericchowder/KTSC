@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-<head> <title>Member List</title>
-	 <link rel="stylesheet" type="text/css" href="../main.css">
+<head><title>Member List</title>
+    <link rel="stylesheet" type="text/css" href="../main.css">
 
 </head>
 <body>
@@ -12,13 +12,12 @@ session_start();
 include_once "../config/connection.php"; //$con variable
 //execute query
 
-if (!$con){
+if (!$con) {
     echo "could not connect";
 }
 
 ?>
 <?php
-
 
 
 ?>

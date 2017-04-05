@@ -6,11 +6,9 @@ $username = "project332";
 $password = "project332password";
 
 try {
-    $con = new mysqli($host,$username,$password, $db_name);
-}
- 
-// show error
-catch(Exception $exception){
+    $con = new mysqli($host, $username, $password, $db_name);
+} // show error
+catch (Exception $exception) {
     echo "Connection error: " . $exception->getMessage();
 }
 

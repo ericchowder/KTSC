@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Parking Locations Page</title>
-	<link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
 <?php
@@ -28,33 +28,33 @@ $result = mysqli_query($con, $query);
         <th>ZIP</th>
         <th>Num of Spaces</th>
     </tr>
-<?php
-// populate table
-while($row = mysqli_fetch_array($result)){
-    echo "<tr>\n";
-    echo "<td>" . $row["street_no"] . "</td>\n";
-    echo "<td>" . $row["street_name"] . "</td>\n";
-    echo "<td>" . $row["apt_number"] . "</td>\n";
-    echo "<td>" . $row["city"] . "</td>\n";
-    echo "<td>" . $row["state"] . "</td>\n";
-    echo "<td>" . $row["zip_code"] . "</td>\n";
-    echo "<td>" . $row["number_of_spaces"] . "</td>\n";
-    echo "</tr>\n";
-}
-?>
+    <?php
+    // populate table
+    while ($row = mysqli_fetch_array($result)) {
+        echo "<tr>\n";
+        echo "<td>" . $row["street_no"] . "</td>\n";
+        echo "<td>" . $row["street_name"] . "</td>\n";
+        echo "<td>" . $row["apt_number"] . "</td>\n";
+        echo "<td>" . $row["city"] . "</td>\n";
+        echo "<td>" . $row["state"] . "</td>\n";
+        echo "<td>" . $row["zip_code"] . "</td>\n";
+        echo "<td>" . $row["number_of_spaces"] . "</td>\n";
+        echo "</tr>\n";
+    }
+    ?>
 </table>
 <div class="corner">
-<form action="../index.php" method="GET">
-	<input value='Logout' type='submit' id='logoutbutton' 
-	name='logoutbutton'/>
-</form>
+    <form action="../index.php" method="GET">
+        <input value='Logout' type='submit' id='logoutbutton'
+               name='logoutbutton'/>
+    </form>
 
-	<br>
-	<br>
-<form action="HomePage.php" method="GET">
-	<input value='HomePage' type='submit' id='homepage'
-	name='homepage'/>
-</form>
+    <br>
+    <br>
+    <form action="HomePage.php" method="GET">
+        <input value='HomePage' type='submit' id='homepage'
+               name='homepage'/>
+    </form>
 </div>
 
 </body>
