@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Parking Locations Page</title>
+	<link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
 <?php
@@ -13,6 +14,13 @@ include_once "../config/connection.php"; //$con variable
 $query = "SELECT * FROM parking_locations";
 $result = mysqli_query($con, $query);
 ?>
+<div class="corner">
+    <a href="../index.php">Logout</a>
+	<br>
+	<a href="HomePage.php">Homepage</a>
+	
+</div>
+
 <h1>List of all parking locations</h1>
 
 <!--Table Headers-->

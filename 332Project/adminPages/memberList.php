@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Member List</title>
+	 <link rel="stylesheet" type="text/css" href="../main.css">
+
 </head>
 <body>
 <?php
@@ -17,7 +19,7 @@ if (!$result){
 }
 
 ?>
-<h1>List of all registered members</h1>
+<h1>List of all registered members.</h1>
 
 <!--Table Headers-->
 <table border="1">
@@ -37,25 +39,39 @@ if (!$result){
         <th>Invoice</th>
     </tr>
     <?php
+	$counter=0;
     // populate table
     while($row = mysqli_fetch_array($result)){
-        echo "<tr>\n";
-        echo "<td>" . $row["member_no"] . "</td>\n";
+		
+		$counter++;
+		echo "<form action='invoice.php' method='post'>";
+		echo "<tr>\n";
+        echo "<td><input type='hidden' name='td_1' value='getvalue()'>" . $row["member_no"] . "</td>\n";
         echo "<td>" . $row["first_name"] . "</td>\n";
         echo "<td>" . $row["last_name"] . "</td>\n";
         echo "<td>" . $row["street_no"] . "</td>\n";
         echo "<td>" . $row["street_name"] . "</td>\n";
         echo "<td>" . $row["apt_number"] . "</td>\n";
-        echo "<td>" . $row["city"] . "</td>\n";
+        echo "<td>" . $row["city"] . "</td>\n"; 
         echo "<td>" . $row["state"] . "</td>\n";
         echo "<td>" . $row["zip_code"] . "</td>\n";
         echo "<td>" . $row["phone_number"] . "</td>\n";
         echo "<td>" . $row["email"] . "</td>\n";
         echo "<td>" . $row["driving_licence_no"] . "</td>\n";
-        echo "<td><button>Generate</button></td>"; // TODO button shoudl generatae invoice
+        echo "<td><input value='Generate' type='button'></td>"; // TODO button shoudl generatae invoice
         echo "</tr>\n";
+		echo "</form>";
     }
     ?>
+	
 </table>
+<script>
+		function getvalue(int){
+			
+			
+		}
+</script>
+
 </body>
 </html>
+
