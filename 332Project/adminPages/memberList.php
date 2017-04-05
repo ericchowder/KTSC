@@ -58,13 +58,9 @@ if (!$result) {
         echo "<td>" . $row["phone_number"] . "</td>\n";
         echo "<td>" . $row["email"] . "</td>\n";
         echo "<td>" . $row["driving_licence_no"] . "</td>\n";
-        //        echo "<td>" .
-        //            "<input type='hidden' name='input$counter' value='" . $row['member_no'] . "'>" .
-        //            "<input value='Generate' type='button' onclick='getVal($counter);'>" .
-        //            "</td>";
         echo "<td>" .
-            "<input type='radio' name='invoice' id='memInvoice' onclick='setVal($counter);'" .
-            "/></td>";
+            "<input type='radio' name='invoice' id='invoiceBtn$counter' onclick='setVal($counter);'" .
+            "></td>";
         echo "</tr>\n";
         //        echo "</form>\n";
     }
@@ -72,13 +68,15 @@ if (!$result) {
 
 </table>
 <form action="invoice.php" method="POST">
-    <input type="hidden" name="memID" id="memID"/>
+    <input type="hidden" name="memID" id="memID">
     <input type="submit">
 </form>
 <script>
     function setVal(c) {
         $('#memID').val($('#mem' + c).html());
     }
+    document.getElementById("invoiceBtn1").checked = true;
+    setVal(1);
 </script>
 
 </body>
