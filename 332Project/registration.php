@@ -21,38 +21,66 @@ if(isset($_POST['regBtn'])){
 	{
 		die("Could not connect:".mysqli_error());
 	}
-	$member_no = $_POST['password'];
-	$aptNum = $_POST['aptNum'];
-	$city = $_POST['city'];
-	$driving = $_POST['driving'];
-	$email = $_POST['email'];
+	
+	
 	$first = $_POST['first'];
 	$second = $_POST['second'];
-	$phone = $_POST['phone'];
-	$state = $_POST['state'];
-	$streetName = $_POST['streetName'];
 	$streetNum = $_POST['streetNum'];
+	$streetName = $_POST['streetName'];
+	$aptNum = $_POST['aptNum'];
+	$city = $_POST['city'];
+	$state = $_POST['state'];
 	$zip = $_POST['zip'];
+	$phone = $_POST['phone'];
+	$email = $_POST['email'];
+	$driving = $_POST['driving'];
 	$membership = 9.9;
-	$sql = "INSERT INTO ktcs_members".
-	"(member_no,first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee)".
-	"VALUES ('$member_no','$first','$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email,'$driving','$membership')";
-
-
-	if(!$con){
-		die('Could not enter data:' .mysqli_error());
-	}
+	
+	
+	/*
+	$first = mysqli_real_escape_string($con,$_REQUEST['first']);
+	$second = mysqli_real_escape_string($con,$_REQUEST['second']);
+	$streetNum = mysqli_real_escape_string($con,$_REQUEST['streetNum']);
+	$streetName = mysqli_real_escape_string($con,$_REQUEST['streetName']);
+	$aptNum = mysqli_real_escape_string($con,$_REQUEST['aptNum']);
+	$city = mysqli_real_escape_string($con,$_REQUEST['city']);
+	$state = mysqli_real_escape_string($con,$_REQUEST['state']);
+	$zip = mysqli_real_escape_string($con,$_REQUEST['zip']);
+	$phone = mysqli_real_escape_string($con,$_REQUEST['phone']);
+	$email = mysqli_real_escape_string($con,$_REQUEST['email']);
+	$driving = mysqli_real_escape_string($con,$_REQUEST['driving']);
+	$membership = 9.99;
+	*/
+	
+	$sql = "INSERT INTO ktcs_members ".
+	       "(first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee)".
+	"VALUES ('$first','$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email','$driving','$membership')";
 
 	mysqli_select_db($con,"project") or die (mysqli_error());
 
+
 	$retval=mysqli_query($con,$sql);
 
-	echo($retval);
+	if($retval){echo "Records added successfully.";
+	
+	
+	$qry = ("SELECT member_no FROM ktcs_members WHERE first_name='$first'");
+	$query = mysqli_query($con,$qry);
+	
+	$result = mysqli_fetch_array($query);
+	
+	echo "Thank you for registering\n";
+	echo "Your login details are\n";
+	
+	echo $result['member_no'];
+	}
 
 	if(!$retval){
 		die('Could not enter data. '. mysql_error());
+		
+		
 	}
-	($con->close());
+	mysqli_close($con);
  }
 ?>
 
