@@ -3,13 +3,11 @@
 <body>
 
 <?php
- // Create a database user using these credentials:
+ 
  $host = "localhost";
  $user = "project332";
  $password = "project332password";
  $database = "project";
- // in phpadmin create a database called "project"
-// run this page, and it will create all tables amd populate it.
 
  $cxn = mysqli_connect($host,$user,$password, $database);
  // Check connection
@@ -84,7 +82,7 @@
 	
 	mysqli_query($cxn,"create table KTCS_members
 	(
-	member_no								varchar(20),
+	member_no								int NOT NULL AUTO_INCREMENT,
 	first_name								varchar(20),
 	last_name								varchar(20),
 	street_no								integer(2),
@@ -133,12 +131,12 @@
     vehicle_identification_number 			integer(5),
 	date									date,
 	access_code								varchar(20),
-	length_of_reservation					date,
+	date_of_return							date,
 	primary key (reservation_no));");
 	
 	echo "reservations created.<br />";
 	
-
+	
 	mysqli_query($cxn, "insert into parking_locations values
 	('15','Princes','12','Kingston','Canada','K7L','521'),
 	('10','Division','15','Kingston','Canada','KVA','231');");
