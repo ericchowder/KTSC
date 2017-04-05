@@ -8,12 +8,21 @@
 //Create a user session or resume an existing one
 session_start();
 
+echo ($_SESSION['id']);
+?>
+
+<?php 
 include_once "../config/connection.php"; //$con variable
 //execute query
 $query = "SELECT  FROM member_rental_history NATURAL JOIN cars";
 $result = mysqli_query($con, $query);
 ?>
 <h1>My Rental History.</h1>
+
+<?php
+	print_r($_GET);
+?>
+
 
 <!--Table Headers-->
 <table border="1">
