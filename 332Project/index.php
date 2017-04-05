@@ -2,75 +2,72 @@
 OUR FILE-->
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Welcome KTCS</title>
-  
-    </head>
+<head>
+    <title>Welcome KTCS</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
 <body>
 
 
- <?php
-  //Create a user session or resume an existing one
- session_start();
- ?>
- 
 <?php
- //check if the user clicked the logout link and set the logout GET parameter
-if(isset($_GET['logout'])){
-	//Destroy the user's session.
-	$_SESSION['id']=null;
-	session_destroy();
+//Create a user session or resume an existing one
+session_start();
+?>
+
+<?php
+//check if the user clicked the logout link and set the logout GET parameter
+if (isset($_GET['logout'])) {
+    //Destroy the user's session.
+    $_SESSION['id'] = null;
+    session_destroy();
 }
- ?>
+?>
 
 
 <?php
 //check if the login form has been submitted
-if(isset($_POST['loginBtn'])){
- 
-    // include database connection
-    include_once 'config/connection.php'; 
-	
-	// SELECT query
-        $query = "SELECT member_no,driving_licence_no FROM ktcs_members";
- 
-		//WHERE member_no=12328893,driving_licence_no=46897"
-		//FIX WHAT IS PASSWORD AND WHAT IS LOGIN DETAIL
-		
-        // prepare query for execution
-        if($stmt = $con->prepare($query)){
-		
-        // bind the parameters. This is the best way to prevent SQL injection hacks. ss means the two parameters are strings.
-        $stmt->bind_Param("ss", $_POST['member_no'], $_POST['driving_licence_no']);
-         
-        // Execute the query
-		$stmt->execute();
- 
-		// Get Results
-		$result = $stmt->get_result();
+if (isset($_POST['loginBtn'])) {
 
-		// Get the number of rows returned
-		$num = $result->num_rows;;
-		
-		if($num>0){
-			//If the username/password matches a user in our database
-			//Read the user details
-			$myrow = $result->fetch_assoc();
-			//Create a session variable that holds the user's id
-			$_SESSION['id'] = $myrow['member_no'];
-			//Redirect the browser to the profile editing page and kill this page.
-			header("Location: HomePage.php");
-			die();
-		} else {
-			//If the username/password doesn't matche a user in our database
-			// Display an error message and the login form
-			echo "Failed to login.";
-		}
-		} else {
-			echo "failed to prepare the SQL";
-		}
- }
- 
+    // include database connection
+    include_once 'config/connection.php';
+
+    // SELECT query
+    $query = "SELECT member_no, driving_licence_no FROM ktcs_members WHERE driving_licence_no=? AND member_no=?";
+
+    // prepare query for execution
+    if ($stmt = $con->prepare($query)) {
+
+        // bind the parameters. This is the best way to prevent SQL injection hacks. ss means the two parameters are strings.
+        $stmt->bind_Param("ss", $_POST['username'], $_POST['password']);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get Results
+        $result = $stmt->get_result();
+
+        // Get the number of rows returned
+        $num = $result->num_rows;;
+
+        if ($num > 0) {
+            //If the username/password matches a user in our database
+            //Read the user details
+            $myrow = $result->fetch_assoc();
+            //Create a session variable that holds the user's id
+            $_SESSION['id'] = $myrow['member_no'];
+            //Redirect the browser to the profile editing page and kill this page.
+            header("Location: memberPages/HomePage.php");
+            die();
+        } else {
+            //If the username/password doesn't matche a user in our database
+            // Display an error message and the login form
+            echo "Failed to login.";
+        }
+    } else {
+        echo "failed to prepare the SQL";
+    }
+}
+
 ?>
 
 <!-- dynamic content will be here -->
