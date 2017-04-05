@@ -16,10 +16,12 @@ session_start();
 
 <?php
 //check if the user clicked the logout link and set the logout GET parameter
-if (isset($_GET['logout'])) {
+if (isset($_GET['logoutbutton'])) {
     //Destroy the user's session.
+	echo ("hi");
     $_SESSION['id'] = null;
     session_destroy();
+
 }
 ?>
 
@@ -68,10 +70,6 @@ if (isset($_POST['loginBtn'])) {
     }
 }
 
-?>
-<?php
-	print_r ($_GET);
-	print_r ($_POST);
 ?>
 
 <!-- dynamic content will be here -->
