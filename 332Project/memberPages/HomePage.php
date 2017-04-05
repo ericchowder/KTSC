@@ -38,7 +38,7 @@ if(isset($_GET['logout'])){
     <a href="parkingLocations.php">Parking Locations</a>
 </p>
 <p>
-    <a href="rentalHistory.php">Rental History</a>
+    <a href="rentalHistory.php">My rental History</a>
 </p>
 <form action="AvailCars.php">
 <p>Available cars on <input type="date" name="date" onclick="AvailCars.php">

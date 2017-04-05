@@ -102,13 +102,13 @@ echo "KTCS_members created.<br />";
 
 mysqli_query($cxn,"create table member_rental_history
 	(
-	member_no								int(8),
-    vehicle_identification_number 			integer(5),
+	member_no								int (8),
+    vehicle_identification_number 			int (5),
 	pick_up_odometer						varchar(20),
 	drop_off_odometer						varchar(20),
 	status_on_return						varchar(20),
 	
-	primary key (member));");
+	primary key (member_no));");
 
 echo "member_rental_history created.<br />";
 
@@ -168,8 +168,8 @@ mysqli_query($cxn, "insert into KTCS_members values
 echo "KTCS_members loaded. <br />";
 
 mysqli_query($cxn, "insert into member_rental_history values
-	('Anthony', '11233' ,'113', '222','Damaged'),
-	('Liu',     '33413' ,'114', '333','Damaged');");
+	('10032911', '11233' ,'113', '222','Damaged'),
+	('12328891',     '33413' ,'114', '333','Damaged');");
 
 echo "member_rental_history loaded. <br />";
 
