@@ -82,7 +82,7 @@ echo "car_maintainance_history	created.<br />";
 
 mysqli_query($cxn,"create table KTCS_members
 	(
-	member_no								int NOT NULL AUTO_INCREMENT,
+	member_no								int (8) NOT NULL AUTO_INCREMENT,
 	first_name								varchar(20),
 	last_name								varchar(20),
 	street_no								integer(2),
@@ -102,7 +102,7 @@ echo "KTCS_members created.<br />";
 
 mysqli_query($cxn,"create table member_rental_history
 	(
-	member								varchar(20),
+	member_no								int(8),
     vehicle_identification_number 			integer(5),
 	pick_up_odometer						varchar(20),
 	drop_off_odometer						varchar(20),
@@ -180,8 +180,8 @@ mysqli_query($cxn, "insert into rental_comments values
 echo "rental_comments loaded. <br />";
 
 mysqli_query($cxn, "insert into reservations values
-	('2017E', '23333334' ,'98765', '1941-06-20','111','1941-06-25'),
-	('2017C', '23333335' ,'87654', '1969-03-29','112','1969-05-30');");
+	('2017E', '23333334' ,'98765', '2018-04-05','111','2018-04-06'),
+	('2017C', '23333335' ,'87654', '2017-04-05','112','2017-04-06');");
 
 echo "reservations loaded. <br />";
 echo "Project database created.<br />";
