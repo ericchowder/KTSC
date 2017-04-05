@@ -1,3 +1,3 @@
 <?php
-	echo gettype ($_POST("td_1"));
+	print_r($_POST);
 ?>

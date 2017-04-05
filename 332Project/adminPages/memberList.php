@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Member List</title>
-	 <link rel="stylesheet" type="text/css" href="../main.css">
-
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 <body>
 <?php
@@ -14,7 +14,7 @@ include_once "../config/connection.php"; //$con variable
 //execute query
 $query = "SELECT * FROM ktcs_members";
 $result = mysqli_query($con, $query);
-if (!$result){
+if (!$result) {
     echo "could not connect";
 }
 
@@ -39,37 +39,46 @@ if (!$result){
         <th>Invoice</th>
     </tr>
     <?php
-	$counter=0;
+    $counter = 0;
     // populate table
-    while($row = mysqli_fetch_array($result)){
-		
-		$counter++;
-		echo "<form action='invoice.php' method='post'>";
-		echo "<tr>\n";
-        echo "<td><input type='hidden' name='td_1' value='getvalue()'>" . $row["member_no"] . "</td>\n";
+    while ($row = mysqli_fetch_array($result)) {
+        $memberNum = $row['member_no'];
+        $counter++;
+        //        echo "<form action='invoice.php' method='post'>\n";
+        echo "<tr>\n";
+        echo "<td id='mem$counter'>" . $memberNum . "</td>\n";
         echo "<td>" . $row["first_name"] . "</td>\n";
         echo "<td>" . $row["last_name"] . "</td>\n";
         echo "<td>" . $row["street_no"] . "</td>\n";
         echo "<td>" . $row["street_name"] . "</td>\n";
         echo "<td>" . $row["apt_number"] . "</td>\n";
-        echo "<td>" . $row["city"] . "</td>\n"; 
+        echo "<td>" . $row["city"] . "</td>\n";
         echo "<td>" . $row["state"] . "</td>\n";
         echo "<td>" . $row["zip_code"] . "</td>\n";
         echo "<td>" . $row["phone_number"] . "</td>\n";
         echo "<td>" . $row["email"] . "</td>\n";
         echo "<td>" . $row["driving_licence_no"] . "</td>\n";
-        echo "<td><input value='Generate' type='button'></td>"; // TODO button shoudl generatae invoice
+        //        echo "<td>" .
+        //            "<input type='hidden' name='input$counter' value='" . $row['member_no'] . "'>" .
+        //            "<input value='Generate' type='button' onclick='getVal($counter);'>" .
+        //            "</td>";
+        echo "<td>" .
+            "<input type='radio' name='invoice' id='memInvoice' onclick='setVal($counter);'" .
+            "/></td>";
         echo "</tr>\n";
-		echo "</form>";
+        //        echo "</form>\n";
     }
     ?>
-	
+
 </table>
+<form action="invoice.php" method="POST">
+    <input type="hidden" name="memID" id="memID"/>
+    <input type="submit">
+</form>
 <script>
-		function getvalue(int){
-			
-			
-		}
+    function setVal(c) {
+        $('#memID').val($('#mem' + c).html());
+    }
 </script>
 
 </body>
