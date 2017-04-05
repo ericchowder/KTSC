@@ -41,7 +41,7 @@ echo "parking_locations created.<br />";
 
 mysqli_query($cxn,"create table cars
    (
-    vehicle_identification_number 			integer(5),
+    vehicle_identification_number 			integer(5) NOT NULL AUTO_INCREMENT,
 	make   							    	varchar(20),
 	model  						     		varchar(20),
 	year 									integer(4),
@@ -58,7 +58,8 @@ echo "cars created.<br />";
 
 mysqli_query($cxn,"create table car_rental_history
 	(
-	rental_id								varchar(20),
+	rental_id								varchar(20) NOT NULL AUTO_INCREMENT,
+	vehicle_identification_number			int(5),
 	member_no		    					varchar(20), 
 	pick_up_odometer    					integer(3),
 	drop_off_odometer 	   			        integer(3),
@@ -69,7 +70,7 @@ echo "car_rental_history created.<br />";
 
 mysqli_query($cxn,"create table car_maintainance_history
 	(
-	maintainance_id							varchar(20),
+	maintainance_id							varchar(20) NOT NULL AUTO_INCREMENT,
     vehicle_identification_number 			integer(5),	
 	date 									date,
 	odometer_reading						integer(3),
@@ -102,8 +103,8 @@ echo "KTCS_members created.<br />";
 
 mysqli_query($cxn,"create table member_rental_history
 	(
-	member_no								int (8),
-    vehicle_identification_number 			int (5),
+	member_no								int (8) NOT NULL,
+    vehicle_identification_number 			int (5) NOT NULL,
 	pick_up_odometer						varchar(20),
 	drop_off_odometer						varchar(20),
 	status_on_return						varchar(20),
@@ -136,6 +137,7 @@ mysqli_query($cxn,"create table reservations
 
 echo "reservations created.<br />";
 
+echo "<br><br>";
 
 mysqli_query($cxn, "insert into parking_locations values
 	('15','Princes','12','Kingston','Canada','K7L','521'),
