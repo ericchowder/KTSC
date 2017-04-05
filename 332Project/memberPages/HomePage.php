@@ -5,12 +5,14 @@
     <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
+<body>
  <?php
   //Create a user session or resume an existing one
  session_start();
  ?>
-
+ 
   <?php
+
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
 	//Destroy the user's session.
@@ -19,10 +21,18 @@ if(isset($_GET['logout'])){
 	session_destroy();
 }
  ?>
+ 
+ <?php 
+ if(isset($_GET['Search'])){
+	
+	header("Locations: AvailCars.php");
+	 
+ }
+ ?>
 
 <h1>KTSC</h1>
 <div class="corner">
-    <a href="../index.php">logout</a>
+    <a href="../index.php">Logout</a>
 </div>
 <p>
     <a href="parkingLocations.php">Parking Locations</a>
@@ -30,8 +40,9 @@ if(isset($_GET['logout'])){
 <p>
     <a href="rentalHistory.php">Rental History</a>
 </p>
-<p>Available cars on <input type="date" name="date">
-    <button>Search</button>
+<form action="AvailCars.php">
+<p>Available cars on <input type="date" name="date" onclick="AvailCars.php">
+    <input type="submit" value="SUBMIT" method="GET">
 </p>
+</form>
 </body>
-</html>
