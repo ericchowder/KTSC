@@ -13,6 +13,9 @@
  echo($_SESSION['name']);
  
  ?>
+
+ 
+ 
  <br><br>
 <div class="corner">
 <form action="../index.php"  method="GET">

@@ -79,6 +79,19 @@ if (!$result) {
     setVal(1);
 </script>
 
+<div class="corner">
+    <form action="../index.php" method="GET">
+        <input value='Logout' type='submit' id='logoutbutton'
+               name='logoutbutton'/>
+    </form>
+
+    <br>
+    <br>
+    <form action="AdminHomePage.php" method="GET">
+        <input value='HomePage' type='submit' id='homepage'
+               name='homepage'/>
+    </form>
+</div>
 </body>
 </html>
 
