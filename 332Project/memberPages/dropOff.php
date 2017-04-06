@@ -20,15 +20,14 @@
 			
 	$retval=mysqli_query($con,$qrt);
 	
-	if($retval){
+	if(!$retval){
 		die("Could not delete data.".mysqli_error());
-		
 	}
 	echo("Your car has been successfully dropped off.");
 
 	
 	}
-	if(!$VIN){
+	if(!$VIN){	
 	echo ("You have no outstanding orders.");
 	}
  ?>

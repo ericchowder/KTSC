@@ -9,8 +9,10 @@
  <?php
   //Create a user session or resume an existing one
  session_start();
+ if($_SESSION){
  echo("Welcome back ");
  echo($_SESSION['name']);
+ }
  
  ?>
 

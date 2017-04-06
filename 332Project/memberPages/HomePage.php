@@ -11,6 +11,7 @@
  include_once "../config/connection.php"; //$con variable
 	
  echo("Welcome back ");
+ 
  $name = $_SESSION['id'];
  ?>
  
