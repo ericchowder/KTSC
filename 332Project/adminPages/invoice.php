@@ -55,7 +55,7 @@ $result = mysqli_query($con, $query);
 			$cost2 = $dateDiff->format("%a");
             echo "<td>" . $dateDiff->format("%a") . "</td>";
 			$finalCost = $cost1 * $cost2;
-			echo "<td>" . "Your monthly cost is: $" . $finalCost . "<br>" . "</td>";
+			echo "<p>" . "Your monthly cost is: $" . $finalCost . "<br>" . "</p>";
         }
     }
     ?>
