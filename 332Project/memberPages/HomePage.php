@@ -5,7 +5,6 @@
     <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
-<body>
  <?php
   //Create a user session or resume an existing one
  session_start();

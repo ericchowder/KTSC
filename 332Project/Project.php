@@ -9,23 +9,46 @@ $user = "project332";
 $password = "project332password";
 $database = "project";
 
-$cxn = mysqli_connect($host,$user,$password, $database);
+$cxn = mysqli_connect($host, $user, $password, $database);
 // Check connection
-if (mysqli_connect_errno())
-{
+if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
     die();
 }
-mysqli_query($cxn,"drop table reservations;");
-mysqli_query($cxn,"drop table rental_comments;");
-mysqli_query($cxn,"drop table member_rental_history;");
-mysqli_query($cxn,"drop table KTCS_members;");
-mysqli_query($cxn,"drop table car_maintainance_history;");
-mysqli_query($cxn,"drop table car_rental_history;");
-mysqli_query($cxn,"drop table cars;");
-mysqli_query($cxn,"drop table parking_locations;");
+$result = mysqli_query($cxn, "drop table reservations;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop reservations.";
+}
+$result = mysqli_query($cxn, "drop table rental_comments;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop rental_comments.";
+}
+$result = mysqli_query($cxn, "drop table member_rental_history;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop member_rental_history.";
+}
+$result = mysqli_query($cxn, "drop table KTCS_members;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop KTCS_members.";
+}
+$result = mysqli_query($cxn, "drop table car_maintainance_history;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop car_maintainance_hostory.";
+}
+$result = mysqli_query($cxn, "drop table car_rental_history;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop car_rental_history.";
+}
+$result = mysqli_query($cxn, "drop table cars;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop cars.";
+}
+$result = mysqli_query($cxn, "drop table parking_locations;");
+if (!$result) {
+    echo "could <strong>NOT</strong> drop parking_locations.";
+}
 
-mysqli_query($cxn,"create table parking_locations
+$result = mysqli_query($cxn, "create table parking_locations
 	(
 	street_no								integer(2),
 	street_name								varchar(20),
@@ -37,9 +60,13 @@ mysqli_query($cxn,"create table parking_locations
 	
 	primary key (street_no,street_name,apt_number,city,state,zip_code));");
 
-echo "parking_locations created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create parking_locations <br>";
+} else {
+    echo "parking_locations created.<br>";
+}
 
-mysqli_query($cxn,"create table cars
+$result = mysqli_query($cxn, "create table cars
    (
     vehicle_identification_number 			integer(5) NOT NULL AUTO_INCREMENT,
 	make   							    	varchar(20),
@@ -50,13 +77,16 @@ mysqli_query($cxn,"create table cars
 	city									varchar(20),
 	state									varchar(20),
 	zip_code								varchar(10),
-	phone_number							integer(10),									
-	daily_rental_fee       				    numeric(2,0),
+    daily_rental_fee       				    numeric(2,0),
 	primary key(vehicle_identification_number));");
 
-echo "cars created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create cars<br>";
+} else {
+    echo "cars created.<br>";
+}
 
-mysqli_query($cxn,"create table car_rental_history
+$result = mysqli_query($cxn, "create table car_rental_history
 	(
 	rental_id								integer(20) NOT NULL AUTO_INCREMENT,
 	vehicle_identification_number			int(5),
@@ -66,9 +96,14 @@ mysqli_query($cxn,"create table car_rental_history
 	status_on_return						varchar(10),
 	primary key (rental_id));");
 
-echo "car_rental_history created.<br />";
 
-mysqli_query($cxn,"create table car_maintainance_history
+if (!$result) {
+    echo "could <strong>NOT</strong> create car_rental_history<br>";
+} else {
+    echo "car_rental_history created.<br>";
+}
+
+$result = mysqli_query($cxn, "create table car_maintainance_history
 	(
 	maintainance_id							varchar(20),
     vehicle_identification_number 			integer(5),	
@@ -79,9 +114,13 @@ mysqli_query($cxn,"create table car_maintainance_history
 
 	primary key (maintainance_id));");
 
-echo "car_maintainance_history	created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create car_maintainance_history<br>";
+} else {
+    echo "car_maintainance_history	created.<br>";
+}
 
-mysqli_query($cxn,"create table KTCS_members
+$result = mysqli_query($cxn, "create table KTCS_members
 	(
 	member_no								int (8) NOT NULL AUTO_INCREMENT,
 	first_name								varchar(20),
@@ -95,13 +134,17 @@ mysqli_query($cxn,"create table KTCS_members
 	phone_number							integer(12),
     email									varchar(20),
 	driving_licence_no						varchar(20),
-	annual_membership_fee					numeric(3,2),
-	administrator							integer(1),
+	monthly_membership_fee					numeric(4,2),
+	administrator							boolean not null DEFAULT 0,
 	primary key (member_no));");
 
-echo "KTCS_members created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create KTCS_members<br>";
+} else {
+    echo "KTCS_members created.<br>";
+}
 
-mysqli_query($cxn,"create table member_rental_history
+$result = mysqli_query($cxn, "create table member_rental_history
 	(
 	member_no								int (8) NOT NULL,
     vehicle_identification_number 			int (5) NOT NULL,
@@ -111,9 +154,13 @@ mysqli_query($cxn,"create table member_rental_history
 	
 	primary key (member_no));");
 
-echo "member_rental_history created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create member_rental_history<br>";
+} else {
+    echo "member_rental_history created.<br>";
+}
 
-mysqli_query($cxn,"create table rental_comments
+$result = mysqli_query($cxn, "create table rental_comments
 	(
 	comment_id								varchar(20),
 	member_no								varchar(20),
@@ -123,9 +170,13 @@ mysqli_query($cxn,"create table rental_comments
 	
 	primary key (comment_id));");
 
-echo "rental_comments created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create rental_comments<br>";
+} else {
+    echo "rental_comments created.<br>";
+}
 
-mysqli_query($cxn,"create table reservations
+$result = mysqli_query($cxn, "create table reservations
 	(
 	reservation_no							varchar(20),
 	member_no								varchar(20),
@@ -135,62 +186,109 @@ mysqli_query($cxn,"create table reservations
 	date_of_return							date,
 	primary key (reservation_no));");
 
-echo "reservations created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> create reservations<br>";
+} else {
+    echo "reservations created.<br>";
+}
 
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 echo "<br><br>";
 
-mysqli_query($cxn, "insert into parking_locations values
+$result = mysqli_query($cxn, "insert into parking_locations values
 	('15','Princes','12','Kingston','Canada','K7L','521'),
 	('10','Division','15','Kingston','Canada','KVA','231');");
 
-echo "parking_locations loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert parking_locations<br>";
+} else {
+    echo "parking_locations loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into cars values
-	('12345', 'Toyota','Yaris','1994','12','Princes','Kingston','Canada','K7L','613444569','25.5'),
-	('23456', 'Fiat'  ,'Punto','2001','13','Division','Kingston','Canada','KVA','613222134','32.5');");
+$result = mysqli_query($cxn, "insert into cars values
+	('12345', 'Toyota','Yaris','1994','12','Princes','Kingston','Canada','K7L','25.5'),
+	('23456', 'Fiat'  ,'Punto','2001','13','Division','Kingston','Canada','KVA','32.5');");
 
-echo "cars loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert cars<br>";
+} else {
+    echo "cars loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into car_rental_history values
+$result = mysqli_query($cxn, "insert into car_rental_history values
 	('20038904', '12345', '33112' ,'122','144','Working'),
 	('12305931', '23456', '89312','100','112','Damaged');");
 
-echo "car_rental_history loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert car_rental_history<br>";
+} else {
+    echo "car_rental_history loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into car_maintainance_history values
+$result = mysqli_query($cxn, "insert into car_maintainance_history values
 	('11223344', '12345' ,'1965-01-09','111','Tires','Fancy'),
 	('12328891', '23456', '1972-07-31','100','Brackes','Sporty');");
 
-echo "car_maintainance_history loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert car_maintainance_history<br>";
+} else {
+    echo "car_maintainance_history loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into KTCS_members values
-	('0000', 'Johnny' ,'Bravo','12','Princes','12','Kingston','Canada','K7L','613444569','jon_bravo@gmail.com','admin','221.10','1'),
-	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','500.50','0');");
+$result = mysqli_query($cxn, "insert into KTCS_members values
+	('0000', 'Johnny' ,'Bravo','12','Princes','12','Kingston','Canada','K7L','613444569','jon_bravo@gmail.com','admin','99.10','1'),
+	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','90.50','0');");
 
-echo "KTCS_members loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert  KTCS_members<br>";
+} else {
+    echo "KTCS_members loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into member_rental_history values
+$result = mysqli_query($cxn, "insert into member_rental_history values
 	('1', '12345' ,'113', '222','Damaged'),
 	('12328891', '23456' ,'114', '333','Damaged');");
 
-echo "member_rental_history loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert member_rental_hostory<br>";
+} else {
+    echo "member_rental_history loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into rental_comments values
+$result = mysqli_query($cxn, "insert into rental_comments values
 	('1012E', '20038990' ,'55555', '5','Great'),
 	('1224D', '20038888' ,'66666', '4','Thank you!');");
 
-echo "rental_comments loaded. <br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert rental_comments<br>";
+} else {
+    echo "rental_comments loaded. <br>";
+}
 
-mysqli_query($cxn, "insert into reservations values
+$result = mysqli_query($cxn, "insert into reservations values
 	('2017E', '23333334' ,'12345', '2018-04-05','111','2018-05-06'),
 	('2017C', '23333335' ,'23456', '2017-04-05','112','2017-05-06');");
 
-echo "reservations loaded. <br />";
-echo "Project database created.<br />";
+if (!$result) {
+    echo "could <strong>NOT</strong> insert reservations<br>";
+} else {
+    echo "reservations loaded. <br>";
+}
+
+echo "Project database created.<br>";
 
 
 mysqli_close($cxn);
 ?>
 
 
-</body></html>
+</body>
+</html>
