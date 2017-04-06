@@ -1,6 +1,7 @@
 <HTML>
 <head>
     <link rel="stylesheet" type="text/css" href="../main.css">
+	
 </head>
 <body>
 <?php
@@ -11,6 +12,7 @@ include_once "../config/connection.php"; //$con variable
 //execute query
 $query = "SELECT * FROM cars";
 $result = mysqli_query($con, $query);
+
 ?>
 
 <h1>List of all available cars <?php 
@@ -27,16 +29,17 @@ $result = mysqli_query($con, $query);
         <th>Year</th>
         <th>City</th>
         <th>State</th>
-
+		<th>Rent</th>
     </tr>
 <?php
+	$counter=0;
 // populate table
  		if(!$con)
 	{
 		die("Could not connect:".mysqli_error());
 	}
 while($row = mysqli_fetch_array($result)){
-
+	$counter++;
 	$vin=$row["vehicle_identification_number"];
 	
 	$date_requested = $_GET['date'];
@@ -64,16 +67,20 @@ while($row = mysqli_fetch_array($result)){
 	else{
 
     echo "<tr>\n";	
+	//echo "<td>" . $row["vehicle_identification_number"]. "</td>\n";
 	echo "<td>" . $row["make"] . "</td>\n";
 	echo "<td>" . $row["model"] . "</td>\n";
 	echo "<td>" . $row["year"] . "</td>\n";
 	echo "<td>" . $row["city"] . "</td>\n";
 	echo "<td>" . $row["state"] . "</td>\n";
-	}
+	echo "<td>" . "<input type='radio' name='select' id='selectcar'
+	checked='checked' onclick='setVal($counter{);'". "</td>\n";
 	}
 	
+	$_SESSION['VIN']=$row["vehicle_identification_number"];
+		
+	}
 ?>
-</table>
 
 <div class="corner">
 <form action="../index.php" method="GET">
@@ -87,5 +94,15 @@ while($row = mysqli_fetch_array($result)){
 	name='homepage'/>
 </form>
 </div>
+</table>
+<br>
+<form action="CarReservationPage.php" method="POST">
+	<input type="hidden" name="carBtn" id="carBtn">
+	<input type="submit" value="Make a reservation">
+</form>
+<script>
+	function setVal(c){
+		$('#memID').val($('#mem'+c).html());
+	}
 </body>
 </html>
