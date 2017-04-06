@@ -39,11 +39,11 @@
 <form action="parkingLocations.php" method="GET">
 	<input value='Parking Locations' type='submit' id='parkingbutton' name='parkingbutton'/>
 </form>
-
+<br><br>
 <form action="rentalHistory.php" method="POST">
 	<input value='My rental history' type='submit' id='rentalbutton' name='rentalbutton'/>
 </form>
-
+<br>
 <form action="AvailCars.php">
 <p>Available cars on <input type="date" name="date" onclick="AvailCars.php">
     <input type="submit" value="SUBMIT" method="GET">

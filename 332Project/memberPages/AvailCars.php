@@ -33,28 +33,30 @@ $result = mysqli_query($con, $query);
     ?>.
     <h1>
 
-        <!--Table Headers-->
-        <table border="1">
-            <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>City</th>
-                <th>State</th>
-
-            </tr>
-            <?php
-            // populate table
-            if (!$con) {
-                die("Could not connect:" . mysqli_error());
-            }
-            while ($row = mysqli_fetch_array($result)) {
-
-                $vin = $row["vehicle_identification_number"];
-
-                $date_requested = $_GET['date'];
-
-                $qrt = "SELECT date,date_of_return 
+<!--Table Headers-->
+<table border="1">
+    <tr>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>City</th>
+        <th>State</th>
+		<th>Rent</th>
+    </tr>
+<?php
+	$counter=0;
+// populate table
+ 		if(!$con)
+	{
+		die("Could not connect:".mysqli_error());
+	}
+while($row = mysqli_fetch_array($result)){
+	$counter++;
+	$vin=$row["vehicle_identification_number"];
+	
+	$date_requested = $_GET['date'];
+	
+	$qrt = "SELECT date,date_of_return 
 	FROM reservations 
 	WHERE reservations.vehicle_identification_number=" . $vin;
 
@@ -74,29 +76,43 @@ $result = mysqli_query($con, $query);
 
                 } else {
 
-                    echo "<tr>\n";
-                    echo "<td>" . $row["make"] . "</td>\n";
-                    echo "<td>" . $row["model"] . "</td>\n";
-                    echo "<td>" . $row["year"] . "</td>\n";
-                    echo "<td>" . $row["city"] . "</td>\n";
-                    echo "<td>" . $row["state"] . "</td>\n";
-                }
-            }
+    echo "<tr>\n";	
+	//echo "<td>" . $row["vehicle_identification_number"]. "</td>\n";
+	echo "<td>" . $row["make"] . "</td>\n";
+	echo "<td>" . $row["model"] . "</td>\n";
+	echo "<td>" . $row["year"] . "</td>\n";
+	echo "<td>" . $row["city"] . "</td>\n";
+	echo "<td>" . $row["state"] . "</td>\n";
+	echo "<td>" . "<input type='radio' name='select' id='selectcar'
+	checked='checked' onclick='setVal($counter{);'". "</td>\n";
+	}
 
-            ?>
-        </table>
+	$_SESSION['VIN']=$row["vehicle_identification_number"];
 
-        <div class="corner">
-            <form action="../index.php" method="GET">
-                <input value='Logout' type='submit' id='logoutbutton'
-                       name='logoutbutton'/>
-            </form>
-            <br>
-            <br>
-            <form action="HomePage.php" method="GET">
-                <input value='HomePage' type='submit' id='homepage'
-                       name='homepage'/>
-            </form>
-        </div>
+	}
+?>
+
+<div class="corner">
+<form action="../index.php" method="GET">
+	<input value='Logout' type='submit' id='logoutbutton' 
+	name='logoutbutton'/>
+</form>
+	<br>
+	<br>
+<form action="HomePage.php" method="GET">
+	<input value='HomePage' type='submit' id='homepage'
+	name='homepage'/>
+</form>
+</div>
+</table>
+<br>
+<form action="CarReservationPage.php" method="POST">
+	<input type="hidden" name="carBtn" id="carBtn">
+	<input type="submit" value="Make a reservation">
+</form>
+<script>
+	function setVal(c){
+		$('#memID').val($('#mem'+c).html());
+	}
 </body>
 </html>
