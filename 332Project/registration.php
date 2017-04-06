@@ -33,22 +33,7 @@ if(isset($_POST['regBtn'])){
 	$email = $_POST['email'];
 	$driving = $_POST['driving'];
 	$membership = 9.9;
-	
-	
-	/*
-	$first = mysqli_real_escape_string($con,$_REQUEST['first']);
-	$second = mysqli_real_escape_string($con,$_REQUEST['second']);
-	$streetNum = mysqli_real_escape_string($con,$_REQUEST['streetNum']);
-	$streetName = mysqli_real_escape_string($con,$_REQUEST['streetName']);
-	$aptNum = mysqli_real_escape_string($con,$_REQUEST['aptNum']);
-	$city = mysqli_real_escape_string($con,$_REQUEST['city']);
-	$state = mysqli_real_escape_string($con,$_REQUEST['state']);
-	$zip = mysqli_real_escape_string($con,$_REQUEST['zip']);
-	$phone = mysqli_real_escape_string($con,$_REQUEST['phone']);
-	$email = mysqli_real_escape_string($con,$_REQUEST['email']);
-	$driving = mysqli_real_escape_string($con,$_REQUEST['driving']);
-	$membership = 9.99;
-	*/
+
 	
 	$sql = "INSERT INTO ktcs_members ".
 	       "(first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee)".

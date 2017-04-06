@@ -96,7 +96,7 @@ mysqli_query($cxn,"create table KTCS_members
     email									varchar(20),
 	driving_licence_no						varchar(20),
 	annual_membership_fee					numeric(3,2),
-	
+	administrator							integer(1),
 	primary key (member_no));");
 
 echo "KTCS_members created.<br />";
@@ -164,13 +164,13 @@ mysqli_query($cxn, "insert into car_maintainance_history values
 echo "car_maintainance_history loaded. <br />";
 
 mysqli_query($cxn, "insert into KTCS_members values
-	('0000', 'Johnny' ,'Bravo','12','Princes','12','Kingston','Canada','K7L','613444569','jon_bravo@gmail.com','admin','221.10'),
-	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','500.50');");
+	('0000', 'Johnny' ,'Bravo','12','Princes','12','Kingston','Canada','K7L','613444569','jon_bravo@gmail.com','admin','221.10','1'),
+	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','500.50','0');");
 
 echo "KTCS_members loaded. <br />";
 
 mysqli_query($cxn, "insert into member_rental_history values
-	('10032911', '12345' ,'113', '222','Damaged'),
+	('1', '12345' ,'113', '222','Damaged'),
 	('12328891', '23456' ,'114', '333','Damaged');");
 
 echo "member_rental_history loaded. <br />";

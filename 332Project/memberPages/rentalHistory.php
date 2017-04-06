@@ -8,19 +8,19 @@
 //Create a user session or resume an existing one
 session_start();
 if(isset($_POST['rentalbutton'])){
-echo ($_SESSION['id']);
+$driving_licence=$_SESSION['id'];
 }
 ?>
 
 <?php 
 include_once "../config/connection.php"; //$con variable
 //execute query
-$query = "SELECT make,model 
-		  FROM member_rental_history,cars
-		  WHERE member_rental_history.vehicle_identification_number=cars.vehicle_identification_number";
 
-$result = mysqli_query($con, $query);
+$first_query = "SELECT member_no,first_name,driving_licence_no
+				FROM ktcs_members
+				WHERE ktcs_members.driving_licence_no='".$driving_licence."'";
 
+$first_result = mysqli_query($con,$first_query);
 
 
 ?>
@@ -37,24 +37,27 @@ $result = mysqli_query($con, $query);
     </tr>
     <?php
     // populate table
-    while($row = mysqli_fetch_array($result)){
-        echo "<tr>\n";
-        echo "<td>" . $row["street_no"] . "</td>\n";
-        echo "<td>" . $row["street_name"] . "</td>\n";
-        echo "<td>" . $row["apt_number"] . "</td>\n";
-        echo "<td>" . $row["city"] . "</td>\n";
-        echo "<td>" . $row["state"] . "</td>\n";
-        echo "<td>" . $row["zip_code"] . "</td>\n";
-        echo "<td>" . $row["number_of_spaces"] . "</td>\n";
+    while($row = mysqli_fetch_array($first_result)){
+		
+		$member_no=$row['member_no'];
+		
+		$second_query = "SELECT vehicle_identification_number
+						 FROM member_rental_history
+						 WHERE member_rental_history.member_no='".$member_no."'";
+		$second_result = mysqli_query($con,$second_query);
+				
+		$col = mysqli_fetch_array($second_result);
+        
+		
+		
+		//$row["member_no"] prints 1
+		echo "<tr>\n";
+        echo "<td>" . $col["member_no"] . "</td>\n";
         echo "</tr>\n";
     }
     ?>
 	
 </table>
 
-<?php
-
-print_r ($_POST);
-?>
 </body>
 </html>
