@@ -12,6 +12,12 @@
  echo("Welcome back ");
  echo($_SESSION['name']);
  ?>
+ 
+<div class="corner">
+<form action="../index.php"  method="GET">
+    <input value='Logout' type='submit' id='logoutbutton' name='logoutbutton'/>
+</form>
+</div>
 
 <p><a href="memberList.php">Member List</a>
 </p>

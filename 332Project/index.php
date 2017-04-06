@@ -62,14 +62,15 @@ if (isset($_POST['loginBtn'])) {
 			
             //Redirect the browser to the profile editing page and kill this page.
             //echo(print_r($_SESSION));
-			if($myrow['administrator']=0)
+			echo($myrow['administrator']);
+			if($myrow['administrator']==0)
 			{
 			header("Location: memberPages/HomePage.php");
 			die();
 			}
-			else{
-			header("Location: adminPages/AdminHomePage.php");
-				
+			if($myrow['administrator']==1){
+			//header("Location: adminPages/AdminHomePage.php");
+			die();
 			}
 				
         } else {
