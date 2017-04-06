@@ -7,11 +7,10 @@
 <body>
 <h1>Administrator Homepage.</h1>
 <?php
-//Create a user session or resume an existing one
 session_start();
+include_once "../config/connection.php"; //$con variable
 if ($_SESSION) {
     echo("Welcome back ");
-    echo($_SESSION['name']);
 }
 ?>
 

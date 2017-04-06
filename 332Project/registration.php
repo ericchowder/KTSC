@@ -35,9 +35,12 @@ if(isset($_POST['regBtn'])){
 	$membership = 9.9;
 
 	
-	$sql = "INSERT INTO ktcs_members ".
-	       "(first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee)".
-	"VALUES ('$first','$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email','$driving','$membership')";
+//	$sql = "INSERT INTO ktcs_members ".
+//	       "(first_name,last_name,street_no,street_name,apt_number,city,state,zip_code,phone_number,email,driving_licence_no,annual_membership_fee, administrator)".
+//	"VALUES ('$first','$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email','$driving','$membership', 0)";
+
+	$sql = "insert into KTCS_members(`first_name`,`last_name`,`street_no`,`street_name`,`apt_number`,`city`,`state`,`zip_code`,`phone_number`,`email`,`driving_licence_no`,`monthly_membership_fee`,`administrator`) values
+	('$first' ,'$second','$streetNum','$streetName','$aptNum','$city','$state','$zip','$phone','$email','$driving','$membership','0')";
 
 	mysqli_select_db($con,"project") or die (mysqli_error());
 

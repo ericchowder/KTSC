@@ -22,13 +22,13 @@
 <?php
 session_start();
 include_once "../config/connection.php"; //$con variable
-//execute query
-print_r($_SESSION);
-echo "<br>";
-print_r($_GET);
-echo "<br>";
-print_r($_POST);
-echo "<br>";
+////execute query
+//print_r($_SESSION);
+//echo "<br>";
+//print_r($_GET);
+//echo "<br>";
+//print_r($_POST);
+//echo "<br>";
 ?>
 
 <!--Table Headers-->
@@ -56,6 +56,7 @@ echo "<br>";
     while ($row = mysqli_fetch_array($result)) {
         echo "<tr>";
         echo "<td>" . $row['vehicle_identification_number'] . "</td>";
+        $vin = $row['vehicle_identification_number'];
         echo "<td>" . $row['make'] . "</td>";
         echo "<td>" . $row['model'] . "</td>";
         echo "<td>" . $row['year'] . "</td>";
@@ -64,7 +65,7 @@ echo "<br>";
         echo "<td>" . $row['city'] . "</td>";
         echo "<td>" . $row['state'] . "</td>";
         echo "<td>" . $row['zip_code'] . "</td>";
-        echo "<td><button>click me</button></td>";
+        echo '<td><button onclick="location.href = "history.php?vin=' . $vin . '">click me</button></td>';
         echo "<td>num</td>";
         echo "</tr>";
 
@@ -84,7 +85,5 @@ echo "<br>";
         <input type="submit" value="filter">
     </form>
 </div>
-
-<input type="button" value="Add car">
 </body>
 </html>
