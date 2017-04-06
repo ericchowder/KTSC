@@ -34,7 +34,7 @@ if (isset($_POST['loginBtn'])) {
     include_once 'config/connection.php';
 
     // SELECT query
-    $query = "SELECT member_no, first_name, driving_licence_no FROM ktcs_members WHERE driving_licence_no=? AND member_no=?";
+    $query = "SELECT member_no, first_name, driving_licence_no, administrator FROM ktcs_members WHERE driving_licence_no=? AND member_no=?";
 
     // prepare query for execution
     if ($stmt = $con->prepare($query)) { 
@@ -62,9 +62,16 @@ if (isset($_POST['loginBtn'])) {
 			
             //Redirect the browser to the profile editing page and kill this page.
             //echo(print_r($_SESSION));
-
+			if($myrow['administrator']=0)
+			{
 			header("Location: memberPages/HomePage.php");
-            die();
+			die();
+			}
+			else{
+			header("Location: adminPages/AdminHomePage.php");
+				
+			}
+				
         } else {
             //If the username/password doesn't matche a user in our database
             // Display an error message and the login form

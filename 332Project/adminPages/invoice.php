@@ -10,22 +10,22 @@ session_start();
 include_once "../config/connection.php"; //$con variable
 //execute query
 //Finding Member and Reservation Number
-$query = "SELECT ktcs_members.member_no,ktcs_members.first_name,ktcs_members.last_name, 
-reservations.reservation_no FROM ktcs_members INNER JOIN reservations 
-ON reservations.member_no=23333334;";
-$result = mysqli_query($con, $query);
-//Finding Start Date
-$sDateQuery = "SELECT reservations.date FROM reservations INNER JOIN ktcs_members
-ON reservations.member_no=23333334;";
-$sDateResult = mysqli_query($con, $sDateQuery);
-//Finding End Date
-$rDateQuery = "SELECT reservations.date_of_return FROM reservations INNER JOIN ktcs_members
-ON reservations.member_no=23333334;";
-$rDateResult = mysqli_query($con, $rDateQuery);
-//Car Daily Rental Fee
-$feeQuery = "SELECT cars.daily_rental_fee FROM cars INNER JOIN reservations
-ON cars.vehicle_identification_number=12345;";
-$feeResult = mysqli_query($con, $feeQuery);
+	$query = "SELECT ktcs_members.member_no,ktcs_members.first_name,ktcs_members.last_name, 
+	reservations.reservation_no FROM ktcs_members INNER JOIN reservations 
+	ON reservations.member_no=23333334;";
+	$result = mysqli_query($con, $query);
+	//Finding Start Date
+	$sDateQuery = "SELECT reservations.date FROM reservations INNER JOIN ktcs_members
+	ON reservations.member_no=23333334;";
+	$sDateResult = mysqli_query($con, $sDateQuery);
+	//Finding End Date
+	$rDateQuery = "SELECT reservations.date_of_return FROM reservations INNER JOIN ktcs_members
+	ON reservations.member_no=23333334;";
+	$rDateResult = mysqli_query($con, $rDateQuery);
+	//Car Daily Rental Fee
+	$feeQuery = "SELECT cars.daily_rental_fee FROM cars INNER JOIN reservations
+	ON cars.vehicle_identification_number=12345;";
+	$feeResult = mysqli_query($con, $feeQuery);
 ?>
 <div class="corner">
     <a href="../index.php">Logout</a>

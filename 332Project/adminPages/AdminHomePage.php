@@ -6,6 +6,13 @@
     <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
+ <?php
+  //Create a user session or resume an existing one
+ session_start();
+ echo("Welcome back ");
+ echo($_SESSION['name']);
+ ?>
+
 <p><a href="memberList.php">Member List</a>
 </p>
 <p><a href="carList.php">Car List</a>
