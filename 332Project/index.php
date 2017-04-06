@@ -19,7 +19,6 @@ session_start();
 if (isset($_GET['logoutbutton'])) {
     //Destroy the user's session.
 	echo ("You have successfully logged out.");
-
     $_SESSION['id'] = null;
     session_destroy();
 }
