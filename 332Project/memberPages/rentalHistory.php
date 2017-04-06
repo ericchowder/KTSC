@@ -73,7 +73,7 @@ $first_result = mysqli_query($con,$first_query);
     }
     ?>
 	
-</table>
+
 
 <div class="corner">
 <form action="../index.php" method="GET">
