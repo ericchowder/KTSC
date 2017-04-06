@@ -59,7 +59,7 @@ if (isset($_POST['loginBtn'])) {
             $_SESSION['id'] = $myrow['member_no'];
 			$_SESSION['driving']=$myrow['driving_licence_no'];
 			$_SESSION['name']=$myrow['first_name'];
-			
+			print_r($_SESSION);
             //Redirect the browser to the profile editing page and kill this page.
             //echo(print_r($_SESSION));
 			echo($myrow['administrator']);
