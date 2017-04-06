@@ -23,11 +23,7 @@
 session_start();
 include_once "../config/connection.php"; //$con variable
 //execute query
-$query = "SELECT * FROM cars";
-$result = mysqli_query($con, $query);
-if (!$result) {
-    echo "could not connect";
-}
+
 ?>
 
 <!--Table Headers-->
@@ -38,15 +34,16 @@ if (!$result) {
         <th>Model</th>
         <th>year</th>
         <th>Street Number</th>
-
-
-
-
     </tr>
     <?php
     $counter = 0;
     // populate table
-    while ($row = mysqli_fetch_array($result)) {
+		$query = "SELECT * FROM cars";
+		$result = mysqli_query($con, $query);
+		if (!$result) {
+		echo "could not connect";
+		}
+		while ($row = mysqli_fetch_array($result)) {
         $memberNum = $row['member_no'];
         $counter++;
         //        echo "<form action='invoice.php' method='post'>\n";
