@@ -14,7 +14,7 @@
 session_start();
 include_once "../config/connection.php"; //$con variable
 
-print_r($_POST);
+//print_r($_POST);
 //$_POST['memID'];
 $query = "SELECT * FROM (SELECT ktcs_members.member_no,ktcs_members.first_name,ktcs_members.last_name, reservations.reservation_no, reservations.date, reservations.date_of_return, reservations.vehicle_identification_number FROM ktcs_members NATURAL JOIN reservations WHERE reservations.member_no=23333334) AS one  NATURAL JOIN  (SELECT DISTINCT reservations.vehicle_identification_number, cars.daily_rental_fee FROM reservations NATURAL JOIN cars) AS two;";
 $result = mysqli_query($con, $query);
@@ -55,7 +55,6 @@ $result = mysqli_query($con, $query);
 			$cost2 = $dateDiff->format("%a");
             echo "<td>" . $dateDiff->format("%a") . "</td>";
 			$finalCost = $cost1 * $cost2;
-			echo "<p>" . "Your monthly cost is: $" . $finalCost . "<br>" . "</p>";
         }
     }
     ?>
@@ -71,6 +70,6 @@ $result = mysqli_query($con, $query);
     </tr>
 
 </table>
-<p>Total: <span>placeholder_text</span></p>
+<p><span><?php echo "<p>" . "Your cost for this month is: $" . $finalCost . "<br>" . "</p>"; ?></span></p>
 </body>
 </HTML>
