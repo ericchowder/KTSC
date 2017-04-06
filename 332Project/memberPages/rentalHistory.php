@@ -7,29 +7,31 @@
 <?php
 //Create a user session or resume an existing one
 session_start();
-
+if(isset($_POST['rentalbutton'])){
 echo ($_SESSION['id']);
+}
 ?>
 
 <?php 
 include_once "../config/connection.php"; //$con variable
 //execute query
-$query = "SELECT  FROM member_rental_history NATURAL JOIN cars";
+$query = "SELECT make,model 
+		  FROM member_rental_history,cars
+		  WHERE member_rental_history.vehicle_identification_number=cars.vehicle_identification_number";
+
 $result = mysqli_query($con, $query);
+
+
+
 ?>
 <h1>My Rental History.</h1>
-
-<?php
-	print_r($_GET);
-?>
-
 
 <!--Table Headers-->
 <table border="1">
     <tr>
-        <th>Member Num</th>
-        <th>ViN</th>
-        <th>Piick up Odometer</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Pick up Odometer</th>
         <th>Drop off Odometer</th>
         <th>Status on Return</th>
     </tr>

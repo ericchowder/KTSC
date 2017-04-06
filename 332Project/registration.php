@@ -9,7 +9,6 @@
   //Create a user session or resume an existing one
  session_start();
  ?>
- 
 <?php
 //check if the login form has been submitted
 if(isset($_POST['regBtn'])){

@@ -14,12 +14,6 @@ include_once "../config/connection.php"; //$con variable
 $query = "SELECT * FROM parking_locations";
 $result = mysqli_query($con, $query);
 ?>
-<div class="corner">
-    <a href="../index.php">Logout</a>
-	<br>
-	<a href="HomePage.php">Homepage</a>
-	
-</div>
 
 <h1>List of all parking locations</h1>
 
@@ -49,7 +43,19 @@ while($row = mysqli_fetch_array($result)){
 }
 ?>
 </table>
+<div class="corner">
+<form action="../index.php" method="GET">
+	<input value='Logout' type='submit' id='logoutbutton' 
+	name='logoutbutton'/>
+</form>
 
+	<br>
+	<br>
+<form action="HomePage.php" method="GET">
+	<input value='HomePage' type='submit' id='homepage'
+	name='homepage'/>
+</form>
+</div>
 
 </body>
 </html>
