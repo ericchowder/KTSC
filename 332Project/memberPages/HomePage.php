@@ -10,7 +10,6 @@
  session_start();
  include_once "../config/connection.php"; //$con variable
 	
-	
  echo("Welcome back ");
  $name = $_SESSION['id'];
  ?>
@@ -76,8 +75,8 @@
 	echo("<br/>");
 	echo("Pick up date :".$row['date']);
 	echo("<br/>");
-	echo("Expected drop off date ".	;4
-	7$row['date_of_return']);
+	echo("Expected drop off date ");
+	echo($row['date_of_return']);
 	echo("<br/>");
 	}
 ?>

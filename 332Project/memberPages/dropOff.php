@@ -10,13 +10,13 @@
  session_start();
  include_once "../config/connection.php"; //$con variable
  $VIN = $_SESSION['VIN'];
- print_r($_SESSION);
+
  ?>
  <?php
- 
+	if($VIN){
 	$qrt = "delete 
 			from reservations
-			where reservations.vehicle_identification_number=".$VIN;
+			where vehicle_identification_number=".$VIN;
 			
 	$retval=mysqli_query($con,$qrt);
 	
@@ -24,9 +24,15 @@
 		die("Could not delete data.".mysqli_error());
 		
 	}
- 
+	echo("Your car has been successfully dropped off.");
+
+	
+	}
+	if(!$VIN){
+	echo ("You have no outstanding orders.");
+	}
  ?>
- <h1>Your car has been successfully dropped off.</h1>
+ 
 <div class="corner">
     <form action="../index.php" method="GET">
         <input value='Logout' type='submit' id='logoutbutton'
