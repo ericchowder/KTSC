@@ -163,10 +163,9 @@ mysqli_query($cxn, "insert into car_maintainance_history values
 
 echo "car_maintainance_history loaded. <br />";
 
-mysqli_query($cxn, "insert into KTCS_members values
-	('0000', 'Johnny' ,'Bravo','12','Princes','12','Kingston','Canada','K7L','613444569','jon_bravo@gmail.com','admin','221.10','1'),
-	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','500.50','0');");
-
+mysqli_query($cxn, "insert into ktcs_members values
+	(23333334,'Bob','Smith','24','Database Crescent','3','ktown','sumState','K7L1A2','613123456','bobsmith@lol.com','1a2b3c','5','0');");
+	
 echo "KTCS_members loaded. <br />";
 
 mysqli_query($cxn, "insert into member_rental_history values
@@ -182,7 +181,7 @@ mysqli_query($cxn, "insert into rental_comments values
 echo "rental_comments loaded. <br />";
 
 mysqli_query($cxn, "insert into reservations values
-	('2017E', '23333334' ,'12345', '2018-04-05','111','2018-05-06'),
+	('2017E', '23333334' ,'12345', '2018-04-05','111','2018-04-25'),
 	('2017C', '23333335' ,'23456', '2017-04-05','112','2017-05-06');");
 
 echo "reservations loaded. <br />";
