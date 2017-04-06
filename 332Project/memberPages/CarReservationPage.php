@@ -13,7 +13,6 @@
 session_start();
 include_once "../config/connection.php"; //$con variable
 $member = $_SESSION['id'];
-
 ?>
 
 <?php
@@ -29,9 +28,8 @@ if (isset($_POST['carBtn'])) {
 
     $row = mysqli_fetch_array($first_result);
 
-    $fee = $row['daily_rental_fee'];
+    $_SESSION['fee'] = $row['daily_rental_fee'];
 
-    $GLOBALS['a'] = '$fee';
 }
 ?>
 
@@ -48,22 +46,26 @@ if (isset($_POST['rentBtn'])) {
     $rts = mysqli_query($con, $qrt);
 
     $rs = mysqli_fetch_array($rts);
+    echo "<br>";
+    print_r($rs);
+    echo "<br>";
     $starting_date = $_POST['pickup'];
     $end_date = $_POST['dropoff'];
     $vin = $_SESSION['VIN'];
     $member_no = $rs['member_no'];
     echo($member_no);
 
+    $access_code = rand(1,9999999999);
     $query = "INSERT INTO reservations " .
-        "(member_no,vehicle_identification_number,date,date_of_return)" .
-        "VALUES('$member_no','$vin','$starting_date','$end_date')";
+        "(member_no,vehicle_identification_number,date,access_code,date_of_return)" .
+        "VALUES('$member_no','$vin','$starting_date', $access_code ,'$end_date')";
 
     mysqli_select_db($con, "project") or die (mysqli_error());
 
     $retval = mysqli_query($con, $query);
 
-    if ($retval) {
-        echo "Records added successfully.";
+    if (!$retval) {
+        echo "insert did not work.";
     }
 
 }
@@ -89,7 +91,7 @@ if (isset($_POST['rentBtn'])) {
     <br>
     <p>Select date of drop-off <input id='dropoff' name='dropoff' type='date' name='dropoffdate'
                                       oninput="differenceInDate()"</p>
-    <p>Price: $<span id="carPrice"><?php echo $fee ?></span> per day for the selected car.</p>
+    <p>Price: $<span id="carPrice"><?php echo $_SESSION['fee'] ?></span> per day for the selected car.</p>
 
     <!--<input type="number" value="1" min="1" oninput="update()"> days</p>-->
     <p>Total of days selected: <span id="total"></span></p>

@@ -10,6 +10,7 @@
 session_start();
 if(isset($_POST['rentalbutton'])){
 $driving_licence=$_SESSION['id'];
+echo $driving_licence;
 }
 ?>
 
@@ -46,6 +47,11 @@ $first_result = mysqli_query($con,$first_query);
 						 FROM member_rental_history
 						 WHERE member_rental_history.member_no='".$member_no."'";
 		$second_result = mysqli_query($con,$second_query);
+        if(!$second_result){
+            echo "q did not work";
+        } else {
+            echo "yes";
+        }
 				
 		$col = mysqli_fetch_array($second_result);
 

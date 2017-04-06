@@ -50,13 +50,13 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table parking_locations
 	(
-	street_no								integer(2),
+	street_no								int(2),
 	street_name								varchar(20),
-	apt_number								integer(2),
+	apt_number								int(2),
 	city									varchar(20),
 	state									varchar(20),
-	zip_code								varchar(10),		    				     	
-	number_of_spaces						integer(3),
+	zip_code								varchar(10),
+	number_of_spaces						int(3),
 	
 	primary key (street_no,street_name,apt_number,city,state,zip_code));");
 
@@ -68,11 +68,11 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table cars
    (
-    vehicle_identification_number 			integer(5) NOT NULL AUTO_INCREMENT,
+    vehicle_identification_number 			int(5) NOT NULL UNIQUE AUTO_INCREMENT,
 	make   							    	varchar(20),
 	model  						     		varchar(20),
-	year 									integer(4),
-	street_no								integer(2),
+	year 									int(4),
+	street_no								int(2),
 	street_name								varchar(20),
 	city									varchar(20),
 	state									varchar(20),
@@ -88,11 +88,11 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table car_rental_history
 	(
-	rental_id								integer(20) NOT NULL AUTO_INCREMENT,
+	rental_id								int(20) NOT NULL UNIQUE AUTO_INCREMENT,
 	vehicle_identification_number			int(5),
 	member_no		    					varchar(20), 
-	pick_up_odometer    					integer(3),
-	drop_off_odometer 	   			        integer(3),
+	pick_up_odometer    					int(3),
+	drop_off_odometer 	   			        int(3),
 	status_on_return						varchar(10),
 	primary key (rental_id));");
 
@@ -105,10 +105,10 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table car_maintainance_history
 	(
-	maintainance_id							varchar(20),
-    vehicle_identification_number 			integer(5),	
+	maintainance_id							INT(20)NOT NULL UNIQUE AUTO_INCREMENT,
+    vehicle_identification_number 			int(5),	
 	date 									date,
-	odometer_reading						integer(3),
+	odometer_reading						int(3),
 	maintainance_type						varchar(10),
 	description								varchar(25),
 
@@ -122,16 +122,16 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table KTCS_members
 	(
-	member_no								int (8) NOT NULL AUTO_INCREMENT,
+	member_no								int (8) NOT NULL UNIQUE AUTO_INCREMENT,
 	first_name								varchar(20),
 	last_name								varchar(20),
-	street_no								integer(2),
+	street_no								int(2),
 	street_name								varchar(20),
-	apt_number								integer(2),
+	apt_number								int(2),
 	city									varchar(20),
 	state									varchar(20),
 	zip_code								varchar(10),
-	phone_number							integer(12),
+	phone_number							int(12),
     email									varchar(20),
 	driving_licence_no						varchar(20),
 	monthly_membership_fee					numeric(4,2),
@@ -162,10 +162,10 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table rental_comments
 	(
-	comment_id								varchar(20),
+	comment_id								int(20)NOT NULL UNIQUE AUTO_INCREMENT,
 	member_no								varchar(20),
-    vehicle_identification_number 			integer(5),
-	rating									integer(1),
+    vehicle_identification_number 			int(5),
+	rating									int(1),
 	comment_text							varchar(50),
 	
 	primary key (comment_id));");
@@ -178,11 +178,11 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "create table reservations
 	(
-	reservation_no							varchar(20),
+	reservation_no							int NOT NULL UNIQUE AUTO_INCREMENT,
 	member_no								varchar(20),
-    vehicle_identification_number 			integer(5),
+    vehicle_identification_number 			int(5),
 	date									date,
-	access_code								varchar(20),
+	access_code								int NOT NULL UNIQUE,
 	date_of_return							date,
 	primary key (reservation_no));");
 
@@ -245,7 +245,9 @@ if (!$result) {
 
 $result = mysqli_query($cxn, "insert into KTCS_members values
 	('0000', 'Johnny' ,'Bravo','12','Princes','12','Kingston','Canada','K7L','613444569','jon_bravo@gmail.com','admin','99.10','1'),
-	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','90.50','0');");
+	('12328891', 'Anthony','Soprano','10','Brock','13','Kingston','Canada','KVA','613222134','the_boss@gmail.com', '21456','90.50','0'),
+    (23333334,'Bob','Smith','24','Database Crescent','3','ktown','sumState','K7L1A2','613123456','bobsmith@lol.com','1a2b3c','5','0'),
+    (10102226, 'Kevin', 'Chan', '12', 'street', '2', 'Kingston', 'ohio', 'H0H0H0', '5555555555','email@email.com', 'yesIDrive' ,'9.99', '0');");
 
 if (!$result) {
     echo "could <strong>NOT</strong> insert  KTCS_members<br>";
@@ -274,8 +276,8 @@ if (!$result) {
 }
 
 $result = mysqli_query($cxn, "insert into reservations values
-	('2017E', '23333334' ,'12345', '2018-04-05','111','2018-05-06'),
-	('2017C', '23333335' ,'23456', '2017-04-05','112','2017-05-06');");
+	('2017', '23333334' ,'12345', '2018-04-05','111','2018-04-25'),
+	('201321', '23333335' ,'23456', '2017-04-05','112','2017-05-06');");
 
 if (!$result) {
     echo "could <strong>NOT</strong> insert reservations<br>";
