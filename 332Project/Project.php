@@ -70,7 +70,7 @@ echo "car_rental_history created.<br />";
 
 mysqli_query($cxn,"create table car_maintainance_history
 	(
-	maintainance_id							varchar(20) NOT NULL AUTO_INCREMENT,
+	maintainance_id							varchar(20),
     vehicle_identification_number 			integer(5),	
 	date 									date,
 	odometer_reading						integer(3),
