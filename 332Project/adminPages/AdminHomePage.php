@@ -17,10 +17,17 @@
 <form action="../index.php"  method="GET">
     <input value='Logout' type='submit' id='logoutbutton' name='logoutbutton'/>
 </form>
+
 </div>
 
-<p><a href="memberList.php">Member List</a>
-</p>
+<form action="memberList.php" method="GET">
+	<input value='Member List' type='submit' id='memberbutton' name='memberbutton'/>
+</form>
+<br><br>
+<form action='carList.php' method="GET">
+	<input value='Car List' type='submit' id='carbutton' name='carbutton'/>
+</form>
+
 <p><a href="carList.php">Car List</a>
 </p>
 <p>Reservations on <input type="date"> <input type="button" value="Search"></p>
