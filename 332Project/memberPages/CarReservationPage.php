@@ -99,5 +99,19 @@ if (isset($_POST['rentBtn'])) {
 
     <input type='submit' id='rentBtn' name='rentBtn' value="Rent">
 </form>
+
+<div class="corner">
+    <form action="../index.php" method="GET">
+        <input value='Logout' type='submit' id='logoutbutton'
+               name='logoutbutton'/>
+    </form>
+
+    <br>
+    <br>
+    <form action="HomePage.php" method="GET">
+        <input value='HomePage' type='submit' id='homepage'
+               name='homepage'/>
+    </form>
+</div>
 </body>
 </html>

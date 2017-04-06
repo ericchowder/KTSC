@@ -69,7 +69,7 @@ if (isset($_POST['loginBtn'])) {
 			die();
 			}
 			if($myrow['administrator']==1){
-			//header("Location: adminPages/AdminHomePage.php");
+			header("Location: adminPages/AdminHomePage.php");
 			die();
 			}
 				
