@@ -22,16 +22,18 @@
 <?php
 session_start();
 include_once "../config/connection.php"; //$con variable
-//execute query
-print_r($_SESSION);
-echo "<br>";
-print_r($_GET);
-echo "<br>";
-print_r($_POST);
-echo "<br>";
-?>
+$stNum = $_POST['street_num'];
+$stName = $_POST['street_name'];
+$city = $_POST['city'];
+$state = $_POST['state'];
+$zip = $_POST['zip'];
+$q = "SELECT * FROM cars WHERE street_no=$stNum AND street_name=$stName AND city=$city AND state=$state AND zip_code=$zip;";
+$result = mysqli_query($con, $q);
+if (!$result || mysqli_fetch_array($result) <= 0) {
+    die("please fill in all values");
+}
 
-<!--Table Headers-->
+?>
 <table border="1">
     <tr>
         <th>VIN</th>
@@ -43,16 +45,9 @@ echo "<br>";
         <th>City</th>
         <th>State</th>
         <th>ZIP</th>
-        <th>Rental History</th>
-        <th>Number of Rentals</th>
     </tr>
     <?php
-    // populate table
-    $query = "SELECT * FROM cars";
-    $result = mysqli_query($con, $query);
-    if (!$result) {
-        echo "could not connect";
-    }
+
     while ($row = mysqli_fetch_array($result)) {
         echo "<tr>";
         echo "<td>" . $row['vehicle_identification_number'] . "</td>";
@@ -67,24 +62,6 @@ echo "<br>";
         echo "<td><button>click me</button></td>";
         echo "<td>num</td>";
         echo "</tr>";
-
     }
     ?>
-
 </table>
-<h2>Filters:</h2>
-<!-- Radio buttons -->
-<div style="border: solid black; padding: 5px;">
-    <form action="searchByAddress.php" method="post">
-        <input type="text" name="street num" placeholder="street num">
-        <input type="text" name="street name" placeholder="street name">
-        <input type="text" name="city" placeholder="city">
-        <input type="text" name="state" placeholder="state">
-        <input type="text" name="zip" placeholder="zip">
-        <input type="submit" value="filter">
-    </form>
-</div>
-
-<input type="button" value="Add car">
-</body>
-</html>
