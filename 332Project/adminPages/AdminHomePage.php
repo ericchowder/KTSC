@@ -13,6 +13,9 @@
  echo($_SESSION['name']);
  ?>
 
+
+
+ <br><br>
 <div class="corner">
 <form action="../index.php"  method="GET">
     <input value='Logout' type='submit' id='logoutbutton' name='logoutbutton'/>
@@ -27,9 +30,9 @@
 <form action='carList.php' method="GET">
 	<input value='Car List' type='submit' id='carbutton' name='carbutton'/>
 </form>
-
-<p><a href="carList.php">Car List</a>
-</p>
+<br><br>
+<form action='AvailCars.php'>
 <p>Reservations on <input type="date"> <input type="button" value="Search"></p>
 </body>
+</form>
 </html>
