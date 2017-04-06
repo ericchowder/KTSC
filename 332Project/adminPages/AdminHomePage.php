@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <h1>Administrator Homepage.</h1>
+	<h1>Administrator Homepage.</h1>
     <title>HomePage</title>
     <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
