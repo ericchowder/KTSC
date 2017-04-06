@@ -10,7 +10,7 @@
 session_start();
 if(isset($_POST['rentalbutton'])){
 $driving_licence=$_SESSION['id'];
-echo $driving_licence;
+
 }
 ?>
 

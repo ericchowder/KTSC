@@ -8,7 +8,8 @@
  <?php
   //Create a user session or resume an existing one
  session_start();
-
+ echo("Welcome back ");
+ echo($_SESSION['name']);
  ?>
  
   <?php
@@ -21,6 +22,9 @@
 	//$_SESSION['id']=null;
 	//header("Location: index.php");
 }
+
+?>
+<?php 
 	if(isset($GET['logoutbutton']))
 	{
 		echo("hi");

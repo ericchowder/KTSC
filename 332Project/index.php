@@ -34,10 +34,10 @@ if (isset($_POST['loginBtn'])) {
     include_once 'config/connection.php';
 
     // SELECT query
-    $query = "SELECT member_no, driving_licence_no FROM ktcs_members WHERE driving_licence_no=? AND member_no=?";
+    $query = "SELECT member_no, first_name, driving_licence_no FROM ktcs_members WHERE driving_licence_no=? AND member_no=?";
 
     // prepare query for execution
-    if ($stmt = $con->prepare($query)) {
+    if ($stmt = $con->prepare($query)) { 
 
         // bind the parameters. This is the best way to prevent SQL injection hacks. ss means the two parameters are strings.
         $stmt->bind_Param("ss", $_POST['username'], $_POST['password']);
@@ -57,11 +57,12 @@ if (isset($_POST['loginBtn'])) {
             $myrow = $result->fetch_assoc();
             //Create a session variable that holds the user's id
             $_SESSION['id'] = $myrow['member_no'];
+			$_SESSION['driving']=$myrow['driving_licence_no'];
+			$_SESSION['name']=$myrow['first_name'];
 			
-			echo($myrow['member_no']);
             //Redirect the browser to the profile editing page and kill this page.
-            echo(print_r($_SESSION));
-			
+            //echo(print_r($_SESSION));
+
 			header("Location: memberPages/HomePage.php");
             die();
         } else {
@@ -70,7 +71,7 @@ if (isset($_POST['loginBtn'])) {
             echo "Failed to login: incorrent details.";
         }
     } else {
-        echo "failed to prepare the SQL";
+        echo "Failed to prepare the SQL";
     }
 }
 
